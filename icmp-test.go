@@ -1,12 +1,13 @@
 package main
 import (
 	"fmt"
-//	"bytes"
 	"os"
 	"net"
 )
 
 func main() {
+	fmt.Println("os.Args: ", os.Args)
+
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: ", os.Args[0], " host");
 		os.Exit(1)
@@ -56,7 +57,7 @@ func main() {
 
 func checkSum(msg []byte) uint16 {
 	sum := 0
-	for n := 1; n < len(msg) - 1; n += 2 {
+	for n := 0; n < len(msg) - 1; n += 2 {
 		sum += (int(msg[n]) << 8) + int(msg[n + 1])
 	}
 	sum = (sum >> 16) + (sum & 0xFFFF)
